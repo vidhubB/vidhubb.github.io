@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidHub - Watch</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/watch.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <main class="watch-container">
+            <div class="video-section">
+                <video id="videoPlayer" controls autoplay></video>
+                <h1 id="videoTitle" class="video-title"></h1>
+                <div class="video-info">
+                    <div class="channel-info">
+                        <img id="channelAvatar" src="assets/default-avatar.png" alt="Channel" class="channel-avatar">
+                        <div class="channel-text">
+                            <p id="channelName" class="channel-name"></p>
+                            <p id="subscriberCount" class="subscriber-count"></p>
+                        </div>
+                        <button id="subscribeBtn" class="subscribe-btn">Subscribe</button>
+                    </div>
+                    <div class="video-actions">
+                        <button id="shareBtn" class="action-btn">🔗 Share</button>
+                        <button id="downloadBtn" class="action-btn">⬇️ Download</button>
+                    </div>
+                </div>
+                <div class="description-box">
+                    <p id="videoViews" class="video-views"></p>
+                    <p id="descriptionBox" class="video-description"></p>
+                </div>
+            </div>
+            <div class="related-videos" id="relatedVideos">
+                <h3>Related Videos</h3>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/watch.js"></script>
+</body>
+</html>

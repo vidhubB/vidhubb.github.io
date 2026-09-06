@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidHub - Library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/library.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div id="sidebar"></div>
+        <main class="main-content">
+            <h1 class="library-title">Library</h1>
+            <div class="library-tabs">
+                <button class="tab-btn active" data-tab="history">🕐 History</button>
+                <button class="tab-btn" data-tab="playlists">📋 Playlists</button>
+                <button class="tab-btn" data-tab="downloads">⬇️ Downloads</button>
+            </div>
+            <div id="historySection" class="library-section">
+                <div class="video-grid" id="historyVideos"></div>
+            </div>
+            <div id="playlistsSection" class="library-section" style="display:none;">
+                <button id="createPlaylist" class="publish-btn">+ Create Playlist</button>
+                <div id="playlistsGrid" class="playlists-grid"></div>
+            </div>
+            <div id="downloadsSection" class="library-section" style="display:none;">
+                <div class="video-grid" id="downloadsVideos"></div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/library.js"></script>
+</body>
+</html>

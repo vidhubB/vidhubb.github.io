@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidHub - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div id="sidebar"></div>
+        <main class="main-content">
+            <div class="category-bar">
+                <button class="category-btn active" data-category="All">All</button>
+                <button class="category-btn" data-category="Music">Music</button>
+                <button class="category-btn" data-category="Gaming">Gaming</button>
+                <button class="category-btn" data-category="Tutorials">Tutorials</button>
+                <button class="category-btn" data-category="News">News</button>
+                <button class="category-btn" data-category="Vlogs">Vlogs</button>
+                <button class="category-btn" data-category="Documentaries">Documentaries</button>
+            </div>
+            <div id="videoGrid" class="video-grid"></div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
