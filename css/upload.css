@@ -1,0 +1,72 @@
+.upload-container {
+    max-width: 700px;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.upload-container h1 {
+    margin-bottom: 25px;
+    color: var(--accent);
+}
+
+.upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.upload-area:hover {
+    border-color: var(--accent);
+    background: var(--hover);
+}
+
+.upload-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.upload-placeholder p {
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.file-name {
+    font-weight: 600;
+    color: var(--accent) !important;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.publish-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    color: var(--btn-text);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.publish-btn:hover {
+    background: var(--accent-hover);
+}
+
+.publish-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

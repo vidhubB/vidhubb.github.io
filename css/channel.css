@@ -1,0 +1,90 @@
+.channel-banner {
+    width: 100%;
+    height: 200px;
+    background: var(--accent);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+}
+
+.channel-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.channel-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+}
+
+.channel-details {
+    flex: 1;
+}
+
+.channel-details h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.channel-details p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.channel-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.playlist-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.playlist-card h3 {
+    font-size: 16px;
+}

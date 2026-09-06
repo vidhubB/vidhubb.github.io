@@ -1,0 +1,35 @@
+.category-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.category-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background: var(--hover);
+}
+
+.category-btn.active {
+    background: var(--accent);
+    color: var(--btn-text);
+    border-color: var(--accent);
+}
