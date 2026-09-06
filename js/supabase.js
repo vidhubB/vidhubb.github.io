@@ -1,9 +1,6 @@
-// Initialize Supabase client
 const SUPABASE_URL = 'https://iuhjrojmkohvbxlxcpio.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1aGpyb2pta29odmJ4bHhjcGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3MTIxMjgsImV4cCI6MjEwNDI4ODEyOH0.nSjmrEgQyOFb_fHLHksxYzpkRXDzVeV8f8Gz7kmTeys';
 
-// Create the client
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Check if it's working
-console.log('Supabase client created:', typeof supabase.from);
+ console.log('Supabase ready:', typeof supabase.auth.signInWithPassword);
