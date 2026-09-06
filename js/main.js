@@ -1,9 +1,12 @@
 // ============================================
 // VidHub - Main JavaScript File
-// Loads header, sidebar, and handles theme
+// Handles theme, header, sidebar, and utilities
 // ============================================
 
-// Theme Toggle
+// ============================================
+// THEME MANAGEMENT
+// ============================================
+
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -13,21 +16,66 @@ function toggleTheme() {
     const currentTheme = localStorage.getItem('theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    // Reload header to update theme icon
     loadHeader();
 }
 
-// Load theme on page load
+// Load saved theme
 const savedTheme = localStorage.getItem('theme') || 'light';
 setTheme(savedTheme);
 
-// Check if user is logged in
+// ============================================
+// AUTHENTICATION HELPERS
+// ============================================
+
 function checkAuth() {
     const userId = localStorage.getItem('userId');
     return userId !== null && userId !== 'undefined' && userId !== '';
 }
 
-// Load Header from component file
+async function logout() {
+    try {
+        await supabase.auth.signOut();
+    } catch (err) {
+        console.error('Sign out error:', err);
+    }
+    
+    localStorage.removeItem('userId');
+    localStorage.removeItem('channelName');
+    localStorage.removeItem('userEmail');
+    window.location.href = 'login.html';
+}
+
+async function checkSession() {
+    try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (session) {
+            localStorage.setItem('userId', session.user.id);
+            localStorage.setItem('userEmail', session.user.email);
+            
+            const { data: profile } = await supabase
+                .from('users')
+                .select('channel_name')
+                .eq('id', session.user.id)
+                .single();
+            
+            if (profile) {
+                localStorage.setItem('channelName', profile.channel_name);
+            }
+            
+            return true;
+        }
+        return false;
+    } catch (err) {
+        console.error('Session check error:', err);
+        return false;
+    }
+}
+
+// ============================================
+// HEADER LOADING
+// ============================================
+
 async function loadHeader() {
     const headerElement = document.getElementById('header');
     if (!headerElement) return;
@@ -39,7 +87,7 @@ async function loadHeader() {
         const html = await response.text();
         headerElement.innerHTML = html;
 
-        // Set theme icon based on current theme
+        // Set theme icon
         const themeBtn = headerElement.querySelector('.theme-btn');
         if (themeBtn) {
             themeBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
@@ -76,7 +124,7 @@ async function loadHeader() {
         }
     } catch (error) {
         console.error('Error loading header:', error);
-        // Fallback header if component file fails to load
+        // Fallback header
         headerElement.innerHTML = `
             <header class="header">
                 <div class="header-left">
@@ -93,7 +141,10 @@ async function loadHeader() {
     }
 }
 
-// Load Sidebar from component file
+// ============================================
+// SIDEBAR LOADING
+// ============================================
+
 async function loadSidebar() {
     const sidebarElement = document.getElementById('sidebar');
     if (!sidebarElement) return;
@@ -105,7 +156,7 @@ async function loadSidebar() {
         const html = await response.text();
         sidebarElement.innerHTML = html;
 
-        // Highlight active link based on current page
+        // Highlight active link
         const currentPath = window.location.pathname;
         const sidebarLinks = sidebarElement.querySelectorAll('.sidebar-link');
         
@@ -133,14 +184,10 @@ async function loadSidebar() {
     }
 }
 
-// Logout function
-function logout() {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('channelName');
-    window.location.href = 'login.html';
-}
+// ============================================
+// FORMATTING UTILITIES
+// ============================================
 
-// Format view count (e.g., 1200 -> 1.2K, 1500000 -> 1.5M)
 function formatViews(views) {
     if (!views || views === 0) return '0';
     if (views >= 1000000) return (views / 1000000).toFixed(1) + 'M';
@@ -148,7 +195,6 @@ function formatViews(views) {
     return views.toString();
 }
 
-// Format date (e.g., "2 days ago", "3 weeks ago")
 function formatDate(dateString) {
     if (!dateString) return '';
     
@@ -170,7 +216,10 @@ function formatDate(dateString) {
     return Math.floor(diffDays / 365) + ' years ago';
 }
 
-// Create video card element
+// ============================================
+// VIDEO CARD CREATION
+// ============================================
+
 function createVideoCard(video) {
     const card = document.createElement('div');
     card.className = 'video-card';
@@ -196,8 +245,15 @@ function createVideoCard(video) {
     return card;
 }
 
-// Load components when page loads
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // Check session first
+    await checkSession();
+    
+    // Load header and sidebar
     await loadHeader();
     await loadSidebar();
 });
